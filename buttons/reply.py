@@ -4,6 +4,7 @@ from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashC
 
 IS_ACTIVE_BUTTON = KeyboardButton(Commands.is_active.value)
 MAIN_MENU_BUTTON = KeyboardButton(Commands.main_menu.value)
+COME_BACK_BUTTON = KeyboardButton(Commands.come_back.value)
 
 
 # МЕНЮ КНОПКИ

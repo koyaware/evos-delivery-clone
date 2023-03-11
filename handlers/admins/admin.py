@@ -38,7 +38,7 @@ async def is_active(message: Message):
 
 def register_admin_handlers(dp: Dispatcher):
     dp.register_message_handler(
-        admin_start, AdminFilter(), commands=['start'], state='*', commands_prefix='!/'
+        admin_start, AdminFilter(), text=["!start", "/start", Commands.come_back.value]
     )
     dp.register_message_handler(
         is_active, AdminFilter(), text=Commands.is_active.value

@@ -4,6 +4,7 @@ from enum import Enum
 class Commands(Enum):
     is_active = "Посмотреть всех пользователей 👥"
     main_menu = "Меню 📇"
+    come_back = "Вернуться в главное меню 📇"
 
 
 class MenuCommands(Enum):

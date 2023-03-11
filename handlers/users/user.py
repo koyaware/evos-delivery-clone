@@ -220,7 +220,7 @@ async def show_eleventh_lavash_case(message: Message):
 
 def register_user_handlers(dp: Dispatcher):
     dp.register_message_handler(
-        user_start, commands=['start'], state='*', commands_prefix='!/'
+        user_start, text=["!start", "/start", Commands.come_back.value]
     )
     dp.register_message_handler(
         main_menu, text=Commands.main_menu.value
