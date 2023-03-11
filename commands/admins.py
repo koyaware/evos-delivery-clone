@@ -22,3 +22,9 @@ class ShowSetCommands(Enum):
     first_case = "Комбо плюс Pepsi"
     second_case = "Детское комбо"
     third_case = "ФитCOMBO"
+
+
+class ShowLavashCommands(Enum):
+    first_case = "Лаваш с говядиной"
+    second_case = "Лаваш с курицей"
+    third_case = "Лаваш с говядиной Мини"

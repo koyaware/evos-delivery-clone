@@ -17,7 +17,7 @@ class Products(db.Model):
     __tablename__ = "products"
 
     Id = Column(BigInteger(), primary_key=True)
-    name = Column(String(120))
+    name = Column(String(120), unique=True)
     photo_url = Column(String, unique=True)
     desc = Column(String(120))
 

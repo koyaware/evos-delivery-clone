@@ -1,6 +1,6 @@
 from aiogram.types import KeyboardButton
 
-from commands.admins import Commands, MenuCommands, ShowSetCommands
+from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashCommands
 
 IS_ACTIVE_BUTTON = KeyboardButton(Commands.is_active.value)
 MAIN_MENU_BUTTON = KeyboardButton(Commands.main_menu.value)
@@ -21,6 +21,13 @@ SHOW_GARNISH_BUTTON = KeyboardButton(MenuCommands.show_garnish.value)
 
 # SHOW SET КНОПКИ
 
-FIRST_CASE_BUTTON = KeyboardButton(ShowSetCommands.first_case.value)
-SECOND_CASE_BUTTON = KeyboardButton(ShowSetCommands.second_case.value)
-THIRD_CASE_BUTTON = KeyboardButton(ShowSetCommands.third_case.value)
+FIRST_SET_CASE_BUTTON = KeyboardButton(ShowSetCommands.first_case.value)
+SECOND_SET_CASE_BUTTON = KeyboardButton(ShowSetCommands.second_case.value)
+THIRD_SET_CASE_BUTTON = KeyboardButton(ShowSetCommands.third_case.value)
+
+
+#SHOW LAVASH КНОПКИ
+
+FIRST_LAVASH_CASE_BUTTON = KeyboardButton(ShowLavashCommands.first_case.value)
+SECOND_LAVASH_CASE_BUTTON = KeyboardButton(ShowLavashCommands.second_case.value)
+THIRD_LAVASH_CASE_BUTTON = KeyboardButton(ShowLavashCommands.third_case.value)
