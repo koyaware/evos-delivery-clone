@@ -3,39 +3,26 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
 
 from buttons.inline import get_keyboard
-from commands.admins import MenuCommands, ShowLavashCommands
-from keyboards.reply import SHOW_LAVASH_KEYBOARDS
+from commands.admins import MenuCommands, ShowHotDogCommands
+from keyboards.reply import SHOW_HOT_DOG_KEYBOARDS
 from misc.states import ProductsIdState
 from models import Products
 
 
-async def show_lavash_menu(message: Message):
+async def show_hot_dog_menu(message: Message):
     products: Products = await Products.query.where(
-        Products.name == "МЕНЮ SHOW_LAVASH"
+        Products.name == "МЕНЮ SHOW_HOT_DOG"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=SHOW_LAVASH_KEYBOARDS)
+                                     caption=product.desc, reply_markup=SHOW_HOT_DOG_KEYBOARDS)
 
 
-async def show_first_lavash_case(message: Message, state: FSMContext):
+async def show_first_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с говядиной"
-    ).gino.all()
-    if not products:
-        await message.answer("Что-то пошло не так...")
-    for product in products:
-        await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
-        await ProductsIdState.product_id.set()
-        await state.update_data(product_id=product.Id)
-
-
-async def show_second_lavash_case(message: Message, state: FSMContext):
-    products: Products = await Products.query.where(
-        Products.name == "Лаваш с курицей"
+        Products.name == "Хот-дог"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -46,9 +33,9 @@ async def show_second_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_third_lavash_case(message: Message, state: FSMContext):
+async def show_second_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с говядиной Мини"
+        Products.name == "Даблхот-дог"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -59,9 +46,9 @@ async def show_third_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_fourth_lavash_case(message: Message, state: FSMContext):
+async def show_third_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с курицей Мини"
+        Products.name == "Хот-дог Мини"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -72,9 +59,9 @@ async def show_fourth_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_fifth_lavash_case(message: Message, state: FSMContext):
+async def show_fourth_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с говядиной и сыром"
+        Products.name == "Картофель Фри"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -85,9 +72,9 @@ async def show_fifth_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_sixth_lavash_case(message: Message, state: FSMContext):
+async def show_fifth_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с курицей и сыром"
+        Products.name == "Картофель по-деревенски"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -98,9 +85,9 @@ async def show_sixth_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_seventh_lavash_case(message: Message, state: FSMContext):
+async def show_sixth_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с говядиной и сыром Мини"
+        Products.name == "Хот-дог детский"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -111,9 +98,9 @@ async def show_seventh_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_eighth_lavash_case(message: Message, state: FSMContext):
+async def show_seventh_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш с курицей и сыром Мини"
+        Products.name == "Саб с курицей"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -124,9 +111,9 @@ async def show_eighth_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_ninth_lavash_case(message: Message, state: FSMContext):
+async def show_eighth_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш острый с говядиной"
+        Products.name == "Саб с говядиной"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -137,9 +124,9 @@ async def show_ninth_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_tenth_lavash_case(message: Message, state: FSMContext):
+async def show_ninth_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Лаваш острый с курицей"
+        Products.name == "Саб с курицей и сыром"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -150,9 +137,9 @@ async def show_tenth_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-async def show_eleventh_lavash_case(message: Message, state: FSMContext):
+async def show_tenth_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "Фиттер"
+        Products.name == "Саб с говядиной и сыром"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")
@@ -163,40 +150,37 @@ async def show_eleventh_lavash_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
 
 
-def register_lavash_handler(dp: Dispatcher):
+def register_hot_dog_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_lavash_menu, text=MenuCommands.show_lavash.value
+        show_hot_dog_menu, text=MenuCommands.show_hot_dog.value
     )
     dp.register_message_handler(
-        show_first_lavash_case, text=ShowLavashCommands.first_case.value
+        show_first_case, text=ShowHotDogCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_lavash_case, text=ShowLavashCommands.second_case.value
+        show_second_case, text=ShowHotDogCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_lavash_case, text=ShowLavashCommands.third_case.value
+        show_third_case, text=ShowHotDogCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_lavash_case, text=ShowLavashCommands.fourth_case.value
+        show_fourth_case, text=ShowHotDogCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_lavash_case, text=ShowLavashCommands.fifth_case.value
+        show_fifth_case, text=ShowHotDogCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_lavash_case, text=ShowLavashCommands.sixth_case.value
+        show_sixth_case, text=ShowHotDogCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_lavash_case, text=ShowLavashCommands.seventh_case.value
+        show_seventh_case, text=ShowHotDogCommands.seventh_case.value
     )
     dp.register_message_handler(
-        show_eighth_lavash_case, text=ShowLavashCommands.eighth_case.value
+        show_eighth_case, text=ShowHotDogCommands.eighth_case.value
     )
     dp.register_message_handler(
-        show_ninth_lavash_case, text=ShowLavashCommands.ninth_case.value
+        show_ninth_case, text=ShowHotDogCommands.ninth_case.value
     )
     dp.register_message_handler(
-        show_tenth_lavash_case, text=ShowLavashCommands.tenth_case.value
-    )
-    dp.register_message_handler(
-        show_eleventh_lavash_case, text=ShowLavashCommands.eleventh_case.value
+        show_tenth_case, text=ShowHotDogCommands.tenth_case.value
     )
