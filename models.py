@@ -20,6 +20,7 @@ class Products(db.Model):
     name = Column(String(120), unique=True)
     photo_url = Column(String, unique=True)
     desc = Column(String(120))
+    price = Column(BigInteger())
 
 
 class Trash(db.Model):
