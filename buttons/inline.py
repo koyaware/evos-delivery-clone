@@ -1,14 +1,13 @@
+from aiogram import types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.utils.callback_data import CallbackData
 
-TRASH = InlineKeyboardButton("Добавить в корзину 🗑️", callback_data="add_to_trash")
+cart_cb = CallbackData('cart', 'action', 'amount')
 
 
-keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [
-            InlineKeyboardButton("-", callback_data="remove_item"),
-            TRASH,
-            InlineKeyboardButton("+", callback_data="add_item")
-        ]
-    ]
-)
+def get_keyboard(amount):
+    return types.InlineKeyboardMarkup().row(
+        types.InlineKeyboardButton("Добавить в корзину 🗑️", callback_data=cart_cb.new(action='add_item',
+                                                                                      amount=amount)),
+        types.InlineKeyboardButton("Удалить с корзины 🗑️", callback_data=cart_cb.new(action='remove_item',
+                                                                                     amount=amount)))
