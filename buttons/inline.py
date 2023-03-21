@@ -1,5 +1,4 @@
 from aiogram import types
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.callback_data import CallbackData
 
 cart_cb = CallbackData('cart', 'action', 'amount')

@@ -37,3 +37,34 @@ class ShowLavashCommands(Enum):
     ninth_case = "Лаваш острый с говядиной"
     tenth_case = "Лаваш острый с курицей"
     eleventh_case = "Фиттер"
+
+
+class ShowShawarmaCommands(Enum):
+    first_case = "Шаурма с говядиной Мини"
+    second_case = "Шаурма с говядиной"
+    third_case = "Шаурма с курицей Мини"
+    fourth_case = "Шаурма с курицей"
+    fifth_case = "Шаурма острая с говядиной Мини"
+    sixth_case = "Шаурма острая с курицей Мини"
+    seventh_case = "Шаурма острая с курицей"
+    eighth_case = "Шаурма острая с говядиной"
+
+
+class ShowBurgerCommands(Enum):
+    first_case = "Гамбургер"
+    second_case = "Даблбургер"
+    third_case = "Даблчизбургер"
+    fourth_case = "Чизбургер"
+
+
+class ShowHotDogCommands(Enum):
+    first_case = "Хот-дог"
+    second_case = "Даблхот-дог"
+    third_case = "Хот-дог Мини"
+    fourth_case = "Картофель Фри"
+    fifth_case = "Картофель по-деревенски"
+    sixth_case = "Хот-дог детский"
+    seventh_case = "Саб с курицей"
+    eighth_case = "Саб с говядиной"
+    ninth_case = "Саб с курицей и сыром"
+    tenth_case = "Саб с говядиной и сыром"
