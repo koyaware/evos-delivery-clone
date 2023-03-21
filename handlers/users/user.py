@@ -20,7 +20,7 @@ async def user_start(message: Message, state: FSMContext):
     if not is_user:
         await message.answer("У вас нет прав!\nВы забанены!")
         return
-    await message.answer("Привет, смертный! Выбери команду: ", reply_markup=USER_KEYBOARDS)
+    await message.answer("Привет, пользователь! Выбери команду: ", reply_markup=USER_KEYBOARDS)
 
 
 async def main_menu(message: Message):
