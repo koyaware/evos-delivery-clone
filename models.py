@@ -29,3 +29,4 @@ class Trash(db.Model):
     Id = Column(BigInteger(), primary_key=True)
     user_id = Column(ForeignKey("users.tg_id"))
     products_id = Column(ForeignKey("products.Id"))
+    amount = Column(BigInteger(), default=1)
