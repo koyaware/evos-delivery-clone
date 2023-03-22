@@ -1,8 +1,8 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 
-from buttons.inline import get_keyboard
+from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowSetCommands
 from keyboards.reply import SHOW_SET_KEYBOARDS
 from misc.states import ProductsIdState
@@ -30,7 +30,7 @@ async def show_first_set_case(message: Message, state: FSMContext):
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
 
 
 async def show_second_set_case(message: Message, state: FSMContext):
@@ -43,7 +43,7 @@ async def show_second_set_case(message: Message, state: FSMContext):
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
 
 
 async def show_third_set_case(message: Message, state: FSMContext):
@@ -56,7 +56,7 @@ async def show_third_set_case(message: Message, state: FSMContext):
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
 
 
 def register_set_handler(dp: Dispatcher):

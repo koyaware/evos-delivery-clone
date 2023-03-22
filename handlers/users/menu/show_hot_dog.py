@@ -2,7 +2,7 @@ from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
 
-from buttons.inline import get_keyboard
+from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowHotDogCommands
 from keyboards.reply import SHOW_HOT_DOG_KEYBOARDS
 from misc.states import ProductsIdState
@@ -28,7 +28,7 @@ async def show_first_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -41,7 +41,7 @@ async def show_second_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -54,7 +54,7 @@ async def show_third_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -67,7 +67,7 @@ async def show_fourth_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -80,7 +80,7 @@ async def show_fifth_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -93,7 +93,7 @@ async def show_sixth_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -106,7 +106,7 @@ async def show_seventh_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -119,7 +119,7 @@ async def show_eighth_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -132,7 +132,7 @@ async def show_ninth_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
@@ -145,7 +145,7 @@ async def show_tenth_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=get_keyboard(0))
+                                     caption=product.desc, reply_markup=keyboard)
         await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
