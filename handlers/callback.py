@@ -1,6 +1,7 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
+from sqlalchemy.sql.elements import and_
 
 from models import Cart, CartProducts
 
@@ -8,27 +9,27 @@ from models import Cart, CartProducts
 async def cb_handler(callback: CallbackQuery, state: FSMContext):
     async with state.proxy() as data:
         product_id = data['product_id']
-    cart_user: Cart = await Cart.query.where(
-        Cart.user_id == callback.message.from_user.id)
-    if not cart_user:
-        await Cart.create(user_id=callback.message.from_user.id)
-    cart = await CartProducts.query.where(
-        CartProducts.cart_id != cart_user.user_id)
+    cart_users: Cart = await Cart.query.where(
+        Cart.user_id == callback.from_user.id).gino.all()
+    if not cart_users:
+        await Cart.create(user_id=callback.from_user.id)
+    for cart_user in cart_users:
+        cart_id = cart_user.Id
+        cart = await CartProducts.query.where(and_(
+            CartProducts.cart_id == cart_id,
+            CartProducts.products_id == product_id
+        )).gino.all()
     cb_data = callback.data
 
     if cb_data == 'add_item':
-        if not cart:
-            await CartProducts.create(products_id=product_id)
-            return await callback.bot.send_message(callback.message.from_user.id, 'Добавлено в корзину!')
-        await state.finish()
-        return await callback.message.answer("Корзина пуста!")
+        await CartProducts.create(products_id=product_id, cart_id=cart_id)
+        return await callback.answer('Добавлено в корзину!')
 
     elif cb_data == 'remove_item':
         if not cart:
-            await CartProducts.delete(products_id=product_id)
-            return await callback.bot.send_message(callback.from_user.id, 'Вы успешно удалили с корзины!')
-        await state.finish()
-        return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
+            return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
+        await CartProducts.delete(products_id=product_id, cart_id=cart_id)
+        return await callback.answer('Вы успешно удалили с корзины!')
 
 
 def register_all_callback_handlers(dp: Dispatcher):
