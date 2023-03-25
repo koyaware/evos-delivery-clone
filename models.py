@@ -23,11 +23,19 @@ class Products(db.Model):
     price = Column(BigInteger(), default=None)
 
 
-class Trash(db.Model):
+class Cart(db.Model):
 
-    __tablename__ = "trash"
+    __tablename__ = "cart"
 
     Id = Column(BigInteger(), primary_key=True)
     user_id = Column(ForeignKey("users.tg_id"))
-    products_id = Column(ForeignKey("products.Id"))
     amount = Column(BigInteger(), default=1)
+
+
+class CartProducts(db.Model):
+
+    __tablename__ = "cart products"
+
+    Id = Column(BigInteger(), primary_key=True)
+    cart_id = Column(ForeignKey("cart.Id"))
+    products_id = Column(ForeignKey("products.Id"))
