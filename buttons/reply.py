@@ -1,11 +1,13 @@
 from aiogram.types import KeyboardButton
 
 from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashCommands, ShowShawarmaCommands, \
-    ShowBurgerCommands, ShowHotDogCommands, ShowDishesCommands, ShowDesertsCommands, ShowGarnishCommands
+    ShowBurgerCommands, ShowHotDogCommands, ShowDishesCommands, ShowDesertsCommands, ShowGarnishCommands, \
+    ShowDrinksCommands
 
 IS_ACTIVE_BUTTON = KeyboardButton(Commands.is_active.value)
 MAIN_MENU_BUTTON = KeyboardButton(Commands.main_menu.value)
 COME_BACK_BUTTON = KeyboardButton(Commands.come_back.value)
+MY_CART_BUTTON = KeyboardButton(Commands.my_cart.value)
 
 
 # МЕНЮ КНОПКИ
@@ -107,3 +109,18 @@ FIFTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.fifth_case.value)
 SIXTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.sixth_case.value)
 SEVENTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.seventh_case.value)
 EIGHTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.eighth_case.value)
+
+
+#SHOW DRINKS КНОПКИ
+
+FIRST_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.first_case.value)
+SECOND_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.second_case.value)
+THIRD_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.third_case.value)
+FOURTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.fourth_case.value)
+FIFTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.fifth_case.value)
+SIXTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.sixth_case.value)
+SEVENTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.seventh_case.value)
+EIGHTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.eighth_case.value)
+NINTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.ninth_case.value)
+TENTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.tenth_case.value)
+ELEVENTH_DRINKS_BUTTON = KeyboardButton(ShowDrinksCommands.eleventh_case.value)

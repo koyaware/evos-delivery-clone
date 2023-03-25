@@ -5,6 +5,7 @@ class Commands(Enum):
     is_active = "Посмотреть всех пользователей 👥"
     main_menu = "Меню 📇"
     come_back = "Вернуться в главное меню 📇"
+    my_cart = "Корзина 🗑️"
 
 
 class MenuCommands(Enum):
@@ -97,3 +98,17 @@ class ShowGarnishCommands(Enum):
     sixth_case = "Рис"
     seventh_case = "Салат"
     eighth_case = "Лепешка"
+
+
+class ShowDrinksCommands(Enum):
+    first_case = "Сок Блисс, 1 литр"
+    second_case = "Сок Дена без сахара, 0,33"
+    third_case = "Вода без газа 0,5л"
+    fourth_case = "Пепси, 1,5л"
+    fifth_case = "Пепси, разлив 0,4л"
+    sixth_case = "Пепси, 0,5л"
+    seventh_case = "Чай черный"
+    eighth_case = "Капучино"
+    ninth_case = "Американо"
+    tenth_case = "Латте"
+    eleventh_case = "Стакан 200мл"
