@@ -7,7 +7,7 @@ from keyboards.reply import USER_KEYBOARDS, MENU_KEYBOARDS
 from models import Users
 
 
-async def user_start(message: Message, state: FSMContext):
+async def user_start(message: Message):
     users = await Users.query.where(
         Users.tg_id == message.from_user.id
     ).gino.first()
