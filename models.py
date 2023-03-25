@@ -29,7 +29,6 @@ class Cart(db.Model):
 
     Id = Column(BigInteger(), primary_key=True)
     user_id = Column(ForeignKey("users.tg_id"))
-    amount = Column(BigInteger(), default=1)
 
 
 class CartProducts(db.Model):
@@ -39,3 +38,4 @@ class CartProducts(db.Model):
     Id = Column(BigInteger(), primary_key=True)
     cart_id = Column(ForeignKey("cart.Id"))
     products_id = Column(ForeignKey("products.Id"))
+    amount = Column(BigInteger(), default=1)
