@@ -15,21 +15,28 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await Cart.create(user_id=callback.from_user.id)
     for cart_user in cart_users:
         cart_id = cart_user.Id
-        cart = await CartProducts.query.where(and_(
+        carts: CartProducts = await CartProducts.query.where(and_(
             CartProducts.cart_id == cart_id,
             CartProducts.products_id == product_id
         )).gino.all()
     cb_data = callback.data
 
-    if cb_data == 'add_item':
+    if cb_data == 'plus_item':
+        return await callback.answer("+")
+
+    elif cb_data == 'minus_item':
+        return await callback.answer("-")
+
+    elif cb_data == 'add_item':
         await CartProducts.create(products_id=product_id, cart_id=cart_id)
         return await callback.answer('Добавлено в корзину!')
 
     elif cb_data == 'remove_item':
-        if not cart:
+        if not carts:
             return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
-        await CartProducts.delete(products_id=product_id, cart_id=cart_id)
-        return await callback.answer('Вы успешно удалили с корзины!')
+        for cart in carts:
+            await cart.delete()
+            return await callback.answer('Вы успешно удалили с корзины!')
 
 
 def register_all_callback_handlers(dp: Dispatcher):
