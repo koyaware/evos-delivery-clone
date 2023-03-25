@@ -19,7 +19,8 @@ class Products(db.Model):
     Id = Column(BigInteger(), primary_key=True)
     name = Column(String(120), unique=True)
     photo_url = Column(String, unique=True)
-    desc = Column(String(120))
+    desc = Column(String(1000))
+    price = Column(BigInteger(), default=None)
 
 
 class Trash(db.Model):
@@ -29,3 +30,4 @@ class Trash(db.Model):
     Id = Column(BigInteger(), primary_key=True)
     user_id = Column(ForeignKey("users.tg_id"))
     products_id = Column(ForeignKey("products.Id"))
+    amount = Column(BigInteger(), default=1)

@@ -1,14 +1,9 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+# from aiogram.utils.callback_data import CallbackData
 
-TRASH = InlineKeyboardButton("Добавить в корзину 🗑️", callback_data="add_to_trash")
+# cart_cb = CallbackData('cart', 'action', 'amount')
 
-
-keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [
-            InlineKeyboardButton("-", callback_data="remove_item"),
-            TRASH,
-            InlineKeyboardButton("+", callback_data="add_item")
-        ]
-    ]
-)
+keyboard = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton('Добавить в корзину 🗑️', callback_data='add_item'),
+     InlineKeyboardButton('Удалить с корзины 🗑️', callback_data='remove_item')]
+])
