@@ -1,10 +1,10 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from aiogram.types import Message
 
-from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashCommands
-from keyboards.reply import USER_KEYBOARDS, MENU_KEYBOARDS, SHOW_SET_KEYBOARDS, SHOW_LAVASH_KEYBOARDS
-from models import Users, Products, Trash
+from commands.admins import Commands
+from keyboards.reply import USER_KEYBOARDS, MENU_KEYBOARDS
+from models import Users
 
 
 async def user_start(message: Message, state: FSMContext):

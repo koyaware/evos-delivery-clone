@@ -5,5 +5,5 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton('Добавить в корзину 🗑️', callback_data='add_item'),
-     InlineKeyboardButton('Удалить с корзины 🗑️', callback_data='remove_item')]
+     InlineKeyboardButton('Удалить с корзины ❌', callback_data='remove_item')]
 ])
