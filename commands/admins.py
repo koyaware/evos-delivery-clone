@@ -17,6 +17,7 @@ class MenuCommands(Enum):
     show_deserts = "Десерты"
     show_drinks = "Напитки"
     show_garnish = "Гарнир"
+    show_dishes = "Блюда"
 
 
 class ShowSetCommands(Enum):
@@ -68,3 +69,31 @@ class ShowHotDogCommands(Enum):
     eighth_case = "Саб с говядиной"
     ninth_case = "Саб с курицей и сыром"
     tenth_case = "Саб с говядиной и сыром"
+
+
+class ShowDishesCommands(Enum):
+    first_case = "Донар с говядиной"
+    second_case = "Донар с курицей"
+    third_case = "Стрипсы"
+    fourth_case = "Ифтар кофте с говядиной"
+    fifth_case = "Ифтар стрипс с курицей"
+    sixth_case = "Донар-бокс с говядиной"
+    seventh_case = "Донар-бокс с курицей"
+
+
+class ShowDesertsCommands(Enum):
+    first_case = "Медовик"
+    second_case = "Чизкейк"
+    third_case = "Донат Ягодный микс"
+    fourth_case = "Донат Карамельный"
+
+
+class ShowGarnishCommands(Enum):
+    first_case = "Кетчуп"
+    second_case = "Майонез"
+    third_case = "Чесночный соус"
+    fourth_case = "Сырный соус"
+    fifth_case = "Чили соус"
+    sixth_case = "Рис"
+    seventh_case = "Салат"
+    eighth_case = "Лепешка"

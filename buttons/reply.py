@@ -1,7 +1,7 @@
 from aiogram.types import KeyboardButton
 
 from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashCommands, ShowShawarmaCommands, \
-    ShowBurgerCommands, ShowHotDogCommands
+    ShowBurgerCommands, ShowHotDogCommands, ShowDishesCommands, ShowDesertsCommands, ShowGarnishCommands
 
 IS_ACTIVE_BUTTON = KeyboardButton(Commands.is_active.value)
 MAIN_MENU_BUTTON = KeyboardButton(Commands.main_menu.value)
@@ -16,6 +16,7 @@ SHOW_SHAWARMA_BUTTON = KeyboardButton(MenuCommands.show_shawarma.value)
 SHOW_DONAR_BUTTON = KeyboardButton(MenuCommands.show_donar.value)
 SHOW_BURGER_BUTTON = KeyboardButton(MenuCommands.show_burger.value)
 SHOW_HOT_DOG_BUTTON = KeyboardButton(MenuCommands.show_hot_dog.value)
+SHOW_DISHES_BUTTON = KeyboardButton(MenuCommands.show_dishes.value)
 SHOW_DESERTS_BUTTON = KeyboardButton(MenuCommands.show_deserts.value)
 SHOW_DRINKS_BUTTON = KeyboardButton(MenuCommands.show_drinks.value)
 SHOW_GARNISH_BUTTON = KeyboardButton(MenuCommands.show_garnish.value)
@@ -75,3 +76,34 @@ SEVENTH_HOT_DOG_CASE_BUTTON = KeyboardButton(ShowHotDogCommands.seventh_case.val
 EIGHTH_HOT_DOG_CASE_BUTTON = KeyboardButton(ShowHotDogCommands.eighth_case.value)
 NINTH_HOT_DOG_CASE_BUTTON = KeyboardButton(ShowHotDogCommands.ninth_case.value)
 TENTH_HOT_DOG_CASE_BUTTON = KeyboardButton(ShowHotDogCommands.tenth_case.value)
+
+
+#SHOW DISHES КНОПКИ
+
+FIRST_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.first_case.value)
+SECOND_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.second_case.value)
+THIRD_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.third_case.value)
+FOURTH_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.fourth_case.value)
+FIFTH_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.fifth_case.value)
+SIXTH_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.sixth_case.value)
+SEVENTH_DISHES_CASE_BUTTON = KeyboardButton(ShowDishesCommands.seventh_case.value)
+
+
+#SHOW DESERTS КНОПКИ
+
+FIRST_DESERTS_CASE_BUTTON = KeyboardButton(ShowDesertsCommands.first_case.value)
+SECOND_DESERTS_CASE_BUTTON = KeyboardButton(ShowDesertsCommands.second_case.value)
+THIRD_DESERTS_CASE_BUTTON = KeyboardButton(ShowDesertsCommands.third_case.value)
+FOURTH_DESERTS_CASE_BUTTON = KeyboardButton(ShowDesertsCommands.fourth_case.value)
+
+
+#SHOW GARNISH КНОПКИ
+
+FIRST_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.first_case.value)
+SECOND_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.second_case.value)
+THIRD_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.third_case.value)
+FOURTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.fourth_case.value)
+FIFTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.fifth_case.value)
+SIXTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.sixth_case.value)
+SEVENTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.seventh_case.value)
+EIGHTH_GARNISH_CASE_BUTTON = KeyboardButton(ShowGarnishCommands.eighth_case.value)
