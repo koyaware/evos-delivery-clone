@@ -1,9 +1,8 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
-from sqlalchemy.sql.elements import and_
 
-from models import Cart, CartProducts, Products
+from models import Cart, CartProducts
 
 
 async def cb_handler(callback: CallbackQuery, state: FSMContext):
@@ -50,7 +49,8 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await cart.delete()
         await state.update_data(product_amount=1)
         await callback.answer('Вы успешно удалили с корзины!')
-        return await callback.bot.delete_message(callback.from_user.id, callback.message.message_id)
+        return await callback.bot.edit_message_reply_markup(callback.from_user.id,
+                                                            callback.message.message_id)
 
 
 def register_all_callback_handlers(dp: Dispatcher):

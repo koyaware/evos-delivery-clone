@@ -11,6 +11,7 @@ async def my_cart(message: Message):
     ).gino.all()
     if not users:
         await message.answer("Ваша корзина пуста!")
+    product_keyboad = InlineKeyboardMarkup()
     for user in users:
         carts: CartProducts = await CartProducts.query.where(
             CartProducts.cart_id == user.Id
@@ -24,15 +25,15 @@ async def my_cart(message: Message):
             if not products:
                 await message.answer("Ваша корзина пуста!")
             for product in products:
-                product_keyboad = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(f'🗙 {product.name}', callback_data=product.Id)]
-                ])
-                await message.bot.send_message(message.from_user.id,
-                                               f"У вас в корзине: \n{cart.amount} - "
-                                               f"<b>{product.name}</b>\n\n"
-                                               f"Стоимость: <b>{product.price}</b>\n"
-                                               f"Доставка: <b>10000</b>",
-                                               reply_markup=product_keyboad)
+                product_keyboad.add(
+                    InlineKeyboardButton(f'🗙 {product.name}', callback_data=product.Id)
+                )
+        await message.bot.send_message(message.from_user.id,
+                                       f"У вас в корзине: \n - "
+                                       f"<b></b>\n\n"
+                                       f"Стоимость: <b></b>\n"
+                                       f"Доставка: <b>10000</b>",
+                                       reply_markup=product_keyboad)
 
 
 def register_my_cart_handlers(dp: Dispatcher):
