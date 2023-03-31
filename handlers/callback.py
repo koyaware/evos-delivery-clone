@@ -3,40 +3,54 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 from sqlalchemy.sql.elements import and_
 
-from models import Cart, CartProducts
+from models import Cart, CartProducts, Products
 
 
 async def cb_handler(callback: CallbackQuery, state: FSMContext):
-    async with state.proxy() as data:
-        product_id = data['product_id']
     cart_users: Cart = await Cart.query.where(
         Cart.user_id == callback.from_user.id).gino.all()
     if not cart_users:
         await Cart.create(user_id=callback.from_user.id)
     for cart_user in cart_users:
         cart_id = cart_user.Id
-        carts: CartProducts = await CartProducts.query.where(and_(
-            CartProducts.cart_id == cart_id,
-            CartProducts.products_id == product_id
-        )).gino.all()
+        carts: CartProducts = await CartProducts.query.where(
+            CartProducts.cart_id == cart_id
+        ).gino.all()
+        for cart in carts:
+            products_id = cart.products_id
     cb_data = callback.data
 
     if cb_data == 'plus_item':
-        return await callback.answer("+")
+        async with state.proxy() as data:
+            product_amount = data['product_amount']
+        product_amount += 1
+        await state.update_data(product_amount=product_amount)
+        return await callback.answer(f"Количество штук: {product_amount}")
 
     elif cb_data == 'minus_item':
-        return await callback.answer("-")
+        async with state.proxy() as data:
+            product_amount = data['product_amount']
+        product_amount -= 1
+        if product_amount < 1:
+            return await callback.answer("У вас не может быть меньше товаров!")
+        await state.update_data(product_amount=product_amount)
+        return await callback.answer(f"Количество штук: {product_amount}")
 
     elif cb_data == 'add_item':
-        await CartProducts.create(products_id=product_id, cart_id=cart_id)
+        async with state.proxy() as data:
+            product_id = data['product_id']
+            product_amount = data['product_amount']
+        await CartProducts.create(products_id=product_id, cart_id=cart_id, amount=product_amount)
+        await state.update_data(product_amount=1)
         return await callback.answer('Добавлено в корзину!')
 
-    elif cb_data == 'remove_item':
+    elif cb_data == 'remove_item' or products_id:
         if not carts:
             return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
-        for cart in carts:
-            await cart.delete()
-            return await callback.answer('Вы успешно удалили с корзины!')
+        await cart.delete()
+        await state.update_data(product_amount=1)
+        await callback.answer('Вы успешно удалили с корзины!')
+        return await callback.bot.delete_message(callback.from_user.id, callback.message.message_id)
 
 
 def register_all_callback_handlers(dp: Dispatcher):
