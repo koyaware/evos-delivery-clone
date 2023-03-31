@@ -29,7 +29,6 @@ async def show_first_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -42,7 +41,6 @@ async def show_second_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -55,7 +53,6 @@ async def show_third_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -68,7 +65,6 @@ async def show_fourth_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -81,7 +77,6 @@ async def show_fifth_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -94,7 +89,6 @@ async def show_sixth_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -107,7 +101,6 @@ async def show_seventh_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 

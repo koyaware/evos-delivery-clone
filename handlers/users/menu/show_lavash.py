@@ -29,7 +29,6 @@ async def show_first_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -42,7 +41,6 @@ async def show_second_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -55,7 +53,6 @@ async def show_third_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -68,7 +65,6 @@ async def show_fourth_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -81,7 +77,6 @@ async def show_fifth_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -94,7 +89,6 @@ async def show_sixth_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -107,7 +101,6 @@ async def show_seventh_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -120,7 +113,6 @@ async def show_eighth_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -133,7 +125,6 @@ async def show_ninth_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -146,7 +137,6 @@ async def show_tenth_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -159,7 +149,6 @@ async def show_eleventh_lavash_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 

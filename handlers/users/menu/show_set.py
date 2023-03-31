@@ -39,7 +39,6 @@ async def show_second_set_case(message: Message, state: FSMContext):
     if not products:
         await message.answer("Что-то пошло не так...")
     for product in products:
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
@@ -52,7 +51,6 @@ async def show_third_set_case(message: Message, state: FSMContext):
     if not products:
         await message.answer("Что-то пошло не так...")
     for product in products:
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)

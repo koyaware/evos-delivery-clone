@@ -24,7 +24,7 @@ async def my_cart(message: Message):
             if not products:
                 await message.answer("Ваша корзина пуста!")
             for product in products:
-                await message.bot.send_message(message.from_user.id, f"У вас в корзине: <b>{product.name}</b>\n\n\n"
+                await message.bot.send_message(message.from_user.id, f"У вас в корзине: <b>{product.name}</b>\n\n"
                                                                      f"Стоимость: <b>{product.price}</b>")
 
 

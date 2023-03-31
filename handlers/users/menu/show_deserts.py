@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
 
 from buttons.inline import keyboard
-from commands.admins import MenuCommands, ShowBurgerCommands, ShowDesertsCommands
+from commands.admins import MenuCommands, ShowDesertsCommands
 from keyboards.reply import SHOW_DESERTS_KEYBOARDS
 from misc.states import ProductsIdState
 from models import Products
@@ -29,7 +29,6 @@ async def show_first_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -42,7 +41,6 @@ async def show_second_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -55,7 +53,6 @@ async def show_third_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
@@ -68,7 +65,6 @@ async def show_fourth_case(message: Message, state: FSMContext):
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
-        await ProductsIdState.product_id.set()
         await state.update_data(product_id=product.Id)
 
 
