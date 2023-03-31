@@ -1,11 +1,10 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowSetCommands
 from keyboards.reply import SHOW_SET_KEYBOARDS
-from misc.states import ProductsIdState
 from models import Products
 
 
@@ -46,7 +45,7 @@ async def show_second_set_case(message: Message, state: FSMContext):
 
 async def show_third_set_case(message: Message, state: FSMContext):
     products: Products = await Products.query.where(
-        Products.name == "ФитCOMBO"
+        Products.name == "Фит Комбо"
     ).gino.all()
     if not products:
         await message.answer("Что-то пошло не так...")

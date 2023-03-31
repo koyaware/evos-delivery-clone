@@ -22,8 +22,10 @@ async def user_start(message: Message):
     await message.answer("Привет, пользователь! Выбери команду: ", reply_markup=USER_KEYBOARDS)
 
 
-async def main_menu(message: Message):
+async def main_menu(message: Message, state: FSMContext):
     await message.answer("Выберите категорию: ", reply_markup=MENU_KEYBOARDS)
+    amount = 1
+    await state.update_data(product_amount=amount)
 
 
 def register_user_handlers(dp: Dispatcher):
