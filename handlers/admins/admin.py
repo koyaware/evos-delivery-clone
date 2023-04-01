@@ -5,7 +5,7 @@ from aiogram.types import Message
 from commands.admins import Commands
 from filters.admin import AdminFilter
 from keyboards.reply import ADMIN_KEYBOARDS
-from models import Products, Users
+from models import Users
 
 
 async def admin_start(message: Message, state: FSMContext):
@@ -22,8 +22,7 @@ async def admin_start(message: Message, state: FSMContext):
         await message.answer("У вас нет прав!")
         return
     await message.answer("Привет, админ! Выбери команду: ", reply_markup=ADMIN_KEYBOARDS)
-    amount = 1
-    await state.update_data(product_amount=amount)
+    await state.update_data(product_amount=1)
 
 
 async def is_active(message: Message):

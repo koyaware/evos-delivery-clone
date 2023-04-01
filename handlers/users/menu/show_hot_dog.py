@@ -5,7 +5,6 @@ from aiogram.types import Message
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowHotDogCommands
 from keyboards.reply import SHOW_HOT_DOG_KEYBOARDS
-from misc.states import ProductsIdState
 from models import Products
 
 
@@ -30,6 +29,7 @@ async def show_first_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_second_case(message: Message, state: FSMContext):
@@ -42,6 +42,7 @@ async def show_second_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_third_case(message: Message, state: FSMContext):
@@ -54,6 +55,7 @@ async def show_third_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_fourth_case(message: Message, state: FSMContext):
@@ -66,6 +68,7 @@ async def show_fourth_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_fifth_case(message: Message, state: FSMContext):
@@ -78,6 +81,7 @@ async def show_fifth_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_sixth_case(message: Message, state: FSMContext):
@@ -90,6 +94,7 @@ async def show_sixth_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_seventh_case(message: Message, state: FSMContext):
@@ -102,6 +107,7 @@ async def show_seventh_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_eighth_case(message: Message, state: FSMContext):
@@ -114,6 +120,7 @@ async def show_eighth_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_ninth_case(message: Message, state: FSMContext):
@@ -126,6 +133,7 @@ async def show_ninth_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 async def show_tenth_case(message: Message, state: FSMContext):
@@ -138,6 +146,7 @@ async def show_tenth_case(message: Message, state: FSMContext):
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
                                      caption=product.desc, reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
+        await state.update_data(product_amount=1)
 
 
 def register_hot_dog_handler(dp: Dispatcher):
