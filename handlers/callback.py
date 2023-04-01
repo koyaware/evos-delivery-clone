@@ -43,7 +43,7 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=1)
         return await callback.answer('Добавлено в корзину!')
 
-    elif cb_data == 'remove_item' or products_id:
+    elif cb_data == products_id:
         if not carts:
             return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
         await cart.delete()
