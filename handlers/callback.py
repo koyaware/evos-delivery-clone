@@ -43,14 +43,14 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=1)
         return await callback.answer('Добавлено в корзину!')
 
-    elif cb_data == products_id:
+    elif cb_data == 'remove_item' or products_id:
         if not carts:
             return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
         await cart.delete()
         await state.update_data(product_amount=1)
         await callback.answer('Вы успешно удалили с корзины!')
-        return await callback.bot.edit_message_reply_markup(callback.from_user.id,
-                                                            callback.message.message_id)
+        return await callback.bot.edit_message_reply_markup(message_id=callback.message.message_id,
+                                                            chat_id=callback.message.from_user.id)
 
 
 def register_all_callback_handlers(dp: Dispatcher):
