@@ -8,6 +8,12 @@ class Commands(Enum):
     my_cart = "Корзина 🗑️"
 
 
+class MyCartCommands(Enum):
+    delete_cart = "Очистить корзину 🗑️"
+    place_order = "Оформить заказ 📦"
+    delivery_time = "Время доставки ⏳"
+
+
 class MenuCommands(Enum):
     show_set = "Сет"
     show_lavash = "Лаваш"

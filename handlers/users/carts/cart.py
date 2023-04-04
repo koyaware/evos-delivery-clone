@@ -3,6 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from commands.admins import Commands
+from keyboards.reply import MY_CART_KEYBOARDS
 from models import Cart, CartProducts, Products
 
 
@@ -38,10 +39,13 @@ async def my_cart(message: Message, state: FSMContext):
         await message.bot.send_message(message.from_user.id,
                                        f"У вас в корзине: \n"
                                        f"<b>{chr(10).join([str(i) for i in product_name])}</b>\n\n"
-                                       f"Стоимость: {price}\n"
-                                       f"Доставка: 10000\n"
-                                       f"Общая сумма: <b>{price + 10000}</b>",
+                                       f"Стоимость: {price} сум.\n"
+                                       f"Доставка: 10000 сум.\n"
+                                       f"Общая сумма: <b>{price + 10000} сум.</b>",
                                        reply_markup=product_keyboard)
+        await message.answer("Для удаления товара, вы можете нажать кнопку очистить корзину "
+                             "или удалить выборочно выше.",
+                             reply_markup=MY_CART_KEYBOARDS)
 
 
 def register_my_cart_handlers(dp: Dispatcher):
