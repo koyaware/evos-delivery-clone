@@ -49,8 +49,8 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await cart.delete()
         await state.update_data(product_amount=1)
         await callback.answer('Вы успешно удалили с корзины!')
-        return await callback.bot.edit_message_reply_markup(message_id=callback.message.message_id,
-                                                            chat_id=callback.message.from_user.id)
+        return await callback.bot.edit_message_reply_markup(callback.from_user.id,
+                                                            callback.message.message_id,)
 
 
 def register_all_callback_handlers(dp: Dispatcher):
