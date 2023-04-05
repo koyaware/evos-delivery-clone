@@ -16,7 +16,8 @@ async def show_lavash_menu(message: Message):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=SHOW_LAVASH_KEYBOARDS)
+                                     caption=product.desc,
+                                     reply_markup=SHOW_LAVASH_KEYBOARDS)
 
 
 async def show_first_lavash_case(message: Message, state: FSMContext):
@@ -27,7 +28,8 @@ async def show_first_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -40,7 +42,8 @@ async def show_second_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -53,7 +56,8 @@ async def show_third_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -66,7 +70,8 @@ async def show_fourth_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -79,7 +84,8 @@ async def show_fifth_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -92,7 +98,8 @@ async def show_sixth_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -105,7 +112,8 @@ async def show_seventh_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -118,7 +126,8 @@ async def show_eighth_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -131,7 +140,8 @@ async def show_ninth_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -144,7 +154,8 @@ async def show_tenth_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 
@@ -157,7 +168,8 @@ async def show_eleventh_lavash_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 

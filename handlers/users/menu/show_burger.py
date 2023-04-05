@@ -27,7 +27,8 @@ async def show_first_case(message: Message, state: FSMContext):
         await message.answer("Что-то пошло не так...")
     for product in products:
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
 

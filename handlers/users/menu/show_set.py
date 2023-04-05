@@ -29,7 +29,8 @@ async def show_first_set_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
 
 
 async def show_second_set_case(message: Message, state: FSMContext):
@@ -42,7 +43,8 @@ async def show_second_set_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
 
 
 async def show_third_set_case(message: Message, state: FSMContext):
@@ -55,7 +57,8 @@ async def show_third_set_case(message: Message, state: FSMContext):
         await state.update_data(product_id=product.Id)
         await state.update_data(product_amount=1)
         await message.bot.send_photo(message.from_user.id, photo=product.photo_url,
-                                     caption=product.desc, reply_markup=keyboard)
+                                     caption=f"{product.desc}\n\nСтоимость: <b>{product.price}</b>",
+                                     reply_markup=keyboard)
 
 
 def register_set_handler(dp: Dispatcher):

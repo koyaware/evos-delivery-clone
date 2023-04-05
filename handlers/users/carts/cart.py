@@ -34,7 +34,7 @@ async def my_cart(message: Message):
                 product_name.append(f"Товар: {product.name}.")
                 product_name.append(f"Количество: {cart.amount}.")
                 product_price.append(product.price)
-                price = sum(map(int, product_price))
+                price = sum(map(int, product_price * cart.amount))
         await message.answer("Для удаления товара, вы можете нажать кнопку очистить корзину "
                              "или удалить выборочно ниже.",
                              reply_markup=MY_CART_KEYBOARDS)
