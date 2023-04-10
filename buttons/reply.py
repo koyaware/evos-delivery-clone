@@ -2,19 +2,25 @@ from aiogram.types import KeyboardButton
 
 from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashCommands, ShowShawarmaCommands, \
     ShowBurgerCommands, ShowHotDogCommands, ShowDishesCommands, ShowDesertsCommands, ShowGarnishCommands, \
-    ShowDrinksCommands, MyCartCommands
+    ShowDrinksCommands, MyCartCommands, AdminCommands
 
-IS_ACTIVE_BUTTON = KeyboardButton(Commands.is_active.value)
+
 MAIN_MENU_BUTTON = KeyboardButton(Commands.main_menu.value)
 COME_BACK_BUTTON = KeyboardButton(Commands.come_back.value)
 MY_CART_BUTTON = KeyboardButton(Commands.my_cart.value)
+
+
+# КНОПКИ АДМИНОВ
+
+IS_ACTIVE_BUTTON = KeyboardButton(AdminCommands.is_active.value)
+USER_ORDERS_BUTTON = KeyboardButton(AdminCommands.user_orders.value)
 
 
 # МОЯ КОРЗИНА КНОПКИ
 
 PLACE_ORDER_BUTTON = KeyboardButton(MyCartCommands.place_order.value)
 EMPTY_THE_TRASH_BUTTON = KeyboardButton(MyCartCommands.delete_cart.value)
-DELIVERY_TIME_BUTTON = KeyboardButton(MyCartCommands.delivery_time.value)
+DELIVERY_TIME_BUTTON = KeyboardButton(MyCartCommands.order_time.value)
 
 
 

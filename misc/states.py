@@ -7,3 +7,7 @@ class ProductsIdState(StatesGroup):
 
 class ProductsAmountState(StatesGroup):
     product_amount = State()
+
+
+class PhoneNumberState(StatesGroup):
+    phone_number = State()

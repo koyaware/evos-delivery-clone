@@ -25,22 +25,7 @@ async def admin_start(message: Message, state: FSMContext):
     await state.update_data(product_amount=1)
 
 
-async def is_active(message: Message):
-    users: Users = await Users.query.where(
-        Users.tg_id == Users.tg_id
-    ).gino.all()
-    if not users:
-        await message.answer("Пользователей не найдено!")
-        return
-    for user in users:
-        await message.bot.send_message(message.from_user.id, f"ID Пользователя: <b>{user.tg_id}</b>\n"
-                                                             f"Не судимый: <b>{user.is_user}</b>")
-
-
 def register_admin_handlers(dp: Dispatcher):
     dp.register_message_handler(
         admin_start, AdminFilter(), text=["!start", "/start", Commands.come_back.value]
-    )
-    dp.register_message_handler(
-        is_active, AdminFilter(), text=Commands.is_active.value
     )

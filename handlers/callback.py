@@ -1,8 +1,10 @@
+import time
+
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 
-from models import Cart, CartProducts
+from models import Cart, CartProducts, Users
 
 
 async def cb_handler(callback: CallbackQuery, state: FSMContext):
@@ -26,6 +28,23 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
 
+    elif cb_data == 'end_delete':
+        users = await Users.query.where(
+            Users.is_user == True
+        ).gino.all()
+        for user in users:
+            carts: Cart = await Cart.query.where(
+                Cart.user_id == user.tg_id
+            ).gino.all()
+            for cart in carts:
+                cart_products: CartProducts = await CartProducts.query.where(
+                    CartProducts.cart_id == cart.Id
+                ).gino.all()
+                for cart_product in cart_products:
+                    await cart_product.delete()
+                    await callback.answer("Успешно удалил!")
+                    await callback.message.delete()
+
     elif cb_data == 'minus_item':
         async with state.proxy() as data:
             product_amount = data['product_amount']
@@ -45,12 +64,13 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
 
     elif cb_data == 'remove_item' or products_id:
         if not carts:
-            return await callback.message.answer("Корзина пуста!\nИли Вы этого не добавляли!")
+            return await callback.answer("Корзина пуста!\nИли Вы этого не добавляли!")
         await cart.delete()
         await state.update_data(product_amount=1)
-        await callback.answer('Вы успешно удалили с корзины!')
-        return await callback.bot.edit_message_reply_markup(callback.from_user.id,
-                                                            callback.message.message_id,)
+        await callback.answer('Вы успешно удалили с корзины! Перезайдите в корзину для обновления!')
+        time.sleep(2)
+        await callback.bot.edit_message_reply_markup(callback.from_user.id,
+                                                     callback.message.message_id)
 
 
 def register_all_callback_handlers(dp: Dispatcher):

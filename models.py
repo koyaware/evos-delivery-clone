@@ -10,6 +10,7 @@ class Users(db.Model):
 
     tg_id = Column(BigInteger(), primary_key=True)
     is_user = Column(Boolean(), default=True)
+    phone_number = Column(String)
 
 
 class Products(db.Model):

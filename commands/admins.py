@@ -2,16 +2,20 @@ from enum import Enum
 
 
 class Commands(Enum):
-    is_active = "Посмотреть всех пользователей 👥"
     main_menu = "Меню 📇"
     come_back = "Вернуться в главное меню 📇"
     my_cart = "Корзина 🗑️"
 
 
+class AdminCommands(Enum):
+    is_active = "Посмотреть всех пользователей 👥"
+    user_orders = "Заказы пользователей 📦"
+
+
 class MyCartCommands(Enum):
     delete_cart = "Очистить корзину 🗑️"
     place_order = "Оформить заказ 📦"
-    delivery_time = "Время доставки ⏳"
+    order_time = "Время доставки ⏳"
 
 
 class MenuCommands(Enum):
