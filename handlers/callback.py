@@ -3,8 +3,9 @@ import time
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
+from sqlalchemy import and_
 
-from models import Cart, CartProducts, Users
+from models import Cart, CartProducts, OrderHistory
 
 
 async def cb_handler(callback: CallbackQuery, state: FSMContext):
@@ -12,6 +13,11 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         Cart.user_id == callback.from_user.id).gino.all()
     if not cart_users:
         await Cart.create(user_id=callback.from_user.id)
+    # orders = await OrderHistory.query.where(
+    #     OrderHistory.user_id == callback.from_user.id
+    # ).gino.all()
+    # for order in orders:
+    #     order_id = order.user_id
     for cart_user in cart_users:
         cart_id = cart_user.Id
         carts: CartProducts = await CartProducts.query.where(
@@ -28,23 +34,6 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
 
-    elif cb_data == 'end_delete':
-        users = await Users.query.where(
-            Users.is_user == True
-        ).gino.all()
-        for user in users:
-            carts: Cart = await Cart.query.where(
-                Cart.user_id == user.tg_id
-            ).gino.all()
-            for cart in carts:
-                cart_products: CartProducts = await CartProducts.query.where(
-                    CartProducts.cart_id == cart.Id
-                ).gino.all()
-                for cart_product in cart_products:
-                    await cart_product.delete()
-                    await callback.answer("Успешно удалил!")
-                    await callback.message.delete()
-
     elif cb_data == 'minus_item':
         async with state.proxy() as data:
             product_amount = data['product_amount']
@@ -54,10 +43,26 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
 
+    # elif cb_data == 'remove_order' or order_id:
+    #     await order.delete()
+    #     await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
+    #     time.sleep(2)
+    #     await callback.bot.edit_message_reply_markup(callback.from_user.id,
+    #                                                  callback.message.message_id)
+
     elif cb_data == 'add_item':
         async with state.proxy() as data:
             product_id = data['product_id']
             product_amount = data['product_amount']
+        products = await CartProducts.query.where(and_(
+            CartProducts.cart_id == cart_id,
+            CartProducts.products_id == product_id
+        )).gino.all()
+        if products:
+            for product in products:
+                await product.delete()
+                await CartProducts.create(products_id=product_id, cart_id=cart_id, amount=(product.amount+product_amount))
+                return await callback.answer('Добавлено в корзину!')
         await CartProducts.create(products_id=product_id, cart_id=cart_id, amount=product_amount)
         await state.update_data(product_amount=1)
         return await callback.answer('Добавлено в корзину!')

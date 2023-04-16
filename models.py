@@ -40,3 +40,13 @@ class CartProducts(db.Model):
     cart_id = Column(ForeignKey("cart.Id"))
     products_id = Column(ForeignKey("products.Id"))
     amount = Column(BigInteger(), default=1)
+
+
+class OrderHistory(db.Model):
+
+    __tablename__ = "order history"
+
+    Id = Column(BigInteger(), primary_key=True)
+    cart_products = Column(ForeignKey("cart products.Id"))
+    completed = Column(Boolean(), default=False)
+    user_id = Column(ForeignKey("users.tg_id"))

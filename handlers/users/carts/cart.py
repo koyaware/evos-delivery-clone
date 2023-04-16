@@ -2,6 +2,7 @@ from aiogram import Dispatcher
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from commands.admins import Commands
+from filters.admin import UserFilter
 from keyboards.reply import MY_CART_KEYBOARDS
 from models import Cart, CartProducts, Products
 
@@ -49,5 +50,5 @@ async def my_cart(message: Message):
 
 def register_my_cart_handlers(dp: Dispatcher):
     dp.register_message_handler(
-        my_cart, text=Commands.my_cart.value
+        my_cart, UserFilter(), text=Commands.my_cart.value
     )

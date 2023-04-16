@@ -1,9 +1,10 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message
 from sqlalchemy import and_
 
 from commands.admins import Commands
+from filters.admin import UserFilter
 from keyboards.reply import USER_KEYBOARDS, MENU_KEYBOARDS
 from misc.states import PhoneNumberState
 from models import Users
@@ -35,7 +36,6 @@ async def user_start_ph_number(message: Message, state: FSMContext):
     if message.text.startswith("+998"):
         if len(message.text) != 13:
             return await message.answer("Введено неверное значение!\nПопробуйте заново через /start !")
-        await state.update_data(phone_number=message.text)
         await Users.create(tg_id=message.from_user.id, phone_number=message.text)
         await state.finish()
         return await message.bot.send_message(message.from_user.id, "Привет, пользователь! Выбери команду: ",
@@ -49,11 +49,11 @@ async def main_menu(message: Message, state: FSMContext):
 
 def register_user_handlers(dp: Dispatcher):
     dp.register_message_handler(
-        user_start, text=["!start", "/start", Commands.come_back.value]
+        user_start, UserFilter(), text=["!start", "/start", Commands.come_back.value]
     )
     dp.register_message_handler(
-        user_start_ph_number, state=PhoneNumberState.phone_number
+        user_start_ph_number, UserFilter(), state=PhoneNumberState.phone_number
     )
     dp.register_message_handler(
-        main_menu, text=Commands.main_menu.value
+        main_menu, UserFilter(), text=Commands.main_menu.value
     )
