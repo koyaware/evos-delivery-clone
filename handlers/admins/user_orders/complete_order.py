@@ -3,7 +3,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from commands.admins import AdminCommands
 from filters import AdminFilter
-from models import OrderHistory
+from models import OrderHistory, Users
 
 
 async def order_complete(message: Message):
@@ -14,9 +14,13 @@ async def order_complete(message: Message):
         return await message.answer('Нет заказов!')
     for order in orders:
         inline_keyboard = InlineKeyboardMarkup()
-        inline_keyboard.add(
-            InlineKeyboardButton(f'🗙 {order.user_id}', callback_data=order.Id)
-        )
+        users: Users = await Users.query.where(
+            Users.tg_id == order.user_id
+        ).gino.all()
+        for user in users:
+            inline_keyboard.add(
+                InlineKeyboardButton(f'🗙 {user.phone_number}', callback_data=order.user_id)
+            )
     await message.answer("Заказы упорядочены по ID пользователям.",
                          reply_markup=inline_keyboard)
 

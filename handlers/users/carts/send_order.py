@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from aiogram import Dispatcher
 from aiogram.types import Message
 from sqlalchemy import and_
@@ -34,6 +36,8 @@ async def send_order(message: Message):
                         Products.Id == cart_product.products_id
                     ).gino.all()
                     for product in products:
+                        location_latitude = float(user.location_latitude)
+                        location_longitude = float(user.location_longitude)
                         product_name.append(f"Название: {product.name}")
                         product_name.append(f"Количество: {cart_product.amount}.")
                         user_phone.append(user.phone_number)
@@ -52,15 +56,18 @@ async def send_order(message: Message):
                         await OrderHistory.create(
                             user_id=message.from_user.id,
                             cart_products=cart_product.Id,
-                            completed=False
+                            completed=False,
+                            order_date=datetime.now().replace(microsecond=0)
                         )
             await message.bot.send_message(conf, f"Новый заказ от {message.from_user.id}!\n\n"
                                                  f"Номер телефон пользователя: "
                                                  f"<code>{chr(10).join([str(i) for i in user_phone_number])}</code>\n"
                                                  f"\nЗаказ пользователя: \n\n"
                                                  f"<b>{chr(10).join([str(i) for i in product_name])}</b>\n"
-                                                 f"\nСтоимость заказа вместе с доставкой: <b>{price + 10000}</b>сум.")
-            await message.answer("Ваш заказ принят! \nЖдите звонка от курьера!", reply_markup=MY_CART_KEYBOARDS)
+                                                 f"\nСтоимость заказа вместе с доставкой: <b>{price + 10000}</b>сум.\n"
+                                                 f"\n🔻 Геолокация пользователя: 🔻")
+            await message.answer("Ваш заказ принят. \nЖдите звонка от курьера!", reply_markup=MY_CART_KEYBOARDS)
+            await message.bot.send_location(chat_id=conf, latitude=location_latitude, longitude=location_longitude)
 
 
 def register_send_order_handlers(dp: Dispatcher):

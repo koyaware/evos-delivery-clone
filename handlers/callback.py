@@ -34,13 +34,6 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
 
-    elif cb_data == 'remove_order' or order_id:
-        await order.delete()
-        await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
-        time.sleep(2)
-        await callback.bot.edit_message_reply_markup(callback.from_user.id,
-                                                     callback.message.message_id)
-
     elif cb_data == 'minus_item':
         async with state.proxy() as data:
             product_amount = data['product_amount']
@@ -49,7 +42,6 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
             return await callback.answer("У вас не может быть меньше товаров!")
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
-
 
     elif cb_data == 'add_item':
         async with state.proxy() as data:
@@ -74,6 +66,16 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await cart.delete()
         await state.update_data(product_amount=1)
         await callback.answer('Вы успешно удалили с корзины! Перезайдите в корзину для обновления!')
+        time.sleep(2)
+        await callback.bot.edit_message_reply_markup(callback.from_user.id,
+                                                     callback.message.message_id)
+
+    elif cb_data == order_id:
+        order_users = await OrderHistory.query.where(
+            OrderHistory.user_id == order_id
+        ).gino.all()
+        await OrderHistory.delete()
+        await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
         time.sleep(2)
         await callback.bot.edit_message_reply_markup(callback.from_user.id,
                                                      callback.message.message_id)

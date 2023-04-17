@@ -1,5 +1,6 @@
 from aiogram import Dispatcher
 from aiogram.types import Message
+from sqlalchemy import and_
 
 from commands.admins import AdminCommands
 from filters import AdminFilter
@@ -13,13 +14,16 @@ async def user_orders_uncompleted(message: Message):
     if not orders:
         return await message.answer('Нет новых заказов!')
     for order in orders:
-        users: Users = await Users.query.where(
-            Users.tg_id == order.user_id
-        ).gino.all()
+        users: Users = await Users.query.where(and_(
+            Users.tg_id == order.user_id,
+            Users.location_latitude == Users.location_latitude,
+            Users.location_longitude == Users.location_longitude
+        )).gino.all()
         product_name = []
         user_phone = []
         user_phone_number = []
         product_price = []
+        order_time = []
         cart_products: CartProducts = await CartProducts.query.where(
             CartProducts.Id == order.cart_products
         ).gino.all()
@@ -29,6 +33,9 @@ async def user_orders_uncompleted(message: Message):
                     Products.Id == cart_product.products_id
                 ).gino.all()
                 for product in products:
+                    location_latitude = float(user.location_latitude)
+                    location_longitude = float(user.location_longitude)
+                    order_time.append(order.order_date)
                     product_name.append(f"Название: {product.name}")
                     product_name.append(f"Количество: {cart_product.amount}.")
                     user_phone.append(user.phone_number)
@@ -37,12 +44,18 @@ async def user_orders_uncompleted(message: Message):
                             user_phone_number.append(i)
                     product_price.append(product.price)
                     price = sum(map(int, product_price * cart_product.amount))
-        await message.bot.send_message(message.from_user.id, f"Выполненный заказ от {order.user_id}!\n\n"
+        await message.bot.send_message(message.from_user.id, f"Заказ от {order.user_id}!\n\n"
                                                              f"Номер телефон пользователя: "
                                                              f"<code>{chr(10).join([str(i) for i in user_phone_number])}</code>\n"
                                                              f"\nЗаказ пользователя: \n\n"
                                                              f"<b>{chr(10).join([str(i) for i in product_name])}</b>\n"
-                                                             f"\nСтоимость заказа без доставки: <b>{price}</b>сум.")
+                                                             f"\nСтоимость заказа без доставки: <b>{price}</b>сум.\n"
+                                                             f"\nДата оформления заказа: "
+                                                             f"<b>{chr(10).join([str(i) for i in order_time])}</b>\n"
+                                                             f"\n🔻 Геолокация пользователя: 🔻")
+        await message.bot.send_location(chat_id=message.from_user.id,
+                                        latitude=location_latitude,
+                                        longitude=location_longitude)
 
 
 def register_user_orders_uncompleted_handlers(dp: Dispatcher):

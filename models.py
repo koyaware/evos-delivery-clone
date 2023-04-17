@@ -1,5 +1,5 @@
 from gino import Gino
-from sqlalchemy import Column, Boolean, String, BigInteger, ForeignKey
+from sqlalchemy import Column, Boolean, String, BigInteger, ForeignKey, DateTime
 
 db = Gino()
 
@@ -52,3 +52,4 @@ class OrderHistory(db.Model):
     cart_products = Column(ForeignKey("cart products.Id"))
     completed = Column(Boolean(), default=False)
     user_id = Column(ForeignKey("users.tg_id"))
+    order_date = Column(DateTime())

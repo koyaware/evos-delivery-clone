@@ -53,7 +53,8 @@ SEND_LOCATION_KEYBOARD = ReplyKeyboardMarkup([
 
 
 SETTINGS_KEYBOARD = ReplyKeyboardMarkup([
-    [SEND_CONTACT_BUTTON]
+    [SEND_CONTACT_BUTTON],
+    [COME_BACK_BUTTON]
 ], resize_keyboard=True)
 
 
