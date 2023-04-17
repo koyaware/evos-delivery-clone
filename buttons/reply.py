@@ -18,7 +18,6 @@ IS_ACTIVE_BUTTON = KeyboardButton(AdminCommands.is_active.value)
 USER_ORDERS_BUTTON = KeyboardButton(AdminCommands.user_orders.value)
 ORDER_HISTORY_COMPLETED_BUTTON = KeyboardButton(AdminCommands.order_history_completed.value)
 ORDER_HISTORY_UNCOMPLETED_BUTTON = KeyboardButton(AdminCommands.order_history_uncompleted.value)
-ORDER_COMPLETE_BUTTON = KeyboardButton(AdminCommands.order_complete.value)
 
 
 # МОЯ КОРЗИНА КНОПКИ

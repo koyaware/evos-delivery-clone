@@ -1,5 +1,5 @@
 from aiogram import Dispatcher
-from aiogram.types import Message
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from sqlalchemy import and_
 
 from commands.admins import AdminCommands
@@ -24,6 +24,7 @@ async def user_orders_completed(message: Message):
         user_phone_number = []
         product_price = []
         order_time = []
+        inline_keyboard = InlineKeyboardMarkup()
         for user in users:
             cart_products: CartProducts = await CartProducts.query.where(
                 CartProducts.Id == order.cart_products
@@ -33,8 +34,8 @@ async def user_orders_completed(message: Message):
                     Products.Id == cart_product.products_id
                 ).gino.all()
                 for product in products:
-                    location_latitude = map(float, user.location_latitude)
-                    location_longitude = map(float, user.location_longitude)
+                    location_latitude = float(user.location_latitude)
+                    location_longitude = float(user.location_longitude)
                     order_time.append(f"Дата: {order.order_date}")
                     product_name.append(f"Название: {product.name}")
                     product_name.append(f"Количество: {cart_product.amount}.")
@@ -44,14 +45,18 @@ async def user_orders_completed(message: Message):
                             user_phone_number.append(i)
                     product_price.append(product.price)
                     price = sum(map(int, product_price * cart_product.amount))
+                    inline_keyboard.add(
+                        InlineKeyboardButton(f'🗙 Удалить заказ', callback_data='remove_order')
+                    )
         await message.bot.send_message(message.from_user.id, f"Выполненный заказ от {order.user_id}!\n\n"
                                                              f"Номер телефон пользователя: "
                                                              f"<code>{chr(10).join([str(i) for i in user_phone_number])}</code>\n"
                                                              f"\nЗаказ пользователя: \n\n"
                                                              f"<b>{chr(10).join([str(i) for i in product_name])}</b>\n"
                                                              f"\nСтоимость заказа без доставки: <b>{price}</b>сум.\n"
-                                                             f"\nДата оформления заказа: {order_time}"
-                                                             f"\n🔻 Геолокация пользователя: 🔻")
+                                                             f"\nДата оформления заказа: "
+                                                             f"<b>{chr(10).join([str(i) for i in order_time])}</b>\n"
+                                                             f"\n🔻 Геолокация пользователя: 🔻", reply_markup=inline_keyboard)
     await message.bot.send_location(chat_id=message.from_user.id,
                                     latitude=location_latitude,
                                     longitude=location_longitude)

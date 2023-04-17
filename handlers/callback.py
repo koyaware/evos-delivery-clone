@@ -16,15 +16,11 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
     orders = await OrderHistory.query.where(
         OrderHistory.user_id == callback.from_user.id
     ).gino.all()
-    for order in orders:
-        order_id = order.user_id
     for cart_user in cart_users:
         cart_id = cart_user.Id
         carts: CartProducts = await CartProducts.query.where(
             CartProducts.cart_id == cart_id
         ).gino.all()
-        for cart in carts:
-            products_id = cart.products_id
     cb_data = callback.data
 
     if cb_data == 'plus_item':
@@ -60,25 +56,31 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=1)
         return await callback.answer('Добавлено в корзину!')
 
-    elif cb_data == 'remove_item' or products_id:
+    elif cb_data == 'remove_order':
+        await OrderHistory.delete.where(OrderHistory.Id == OrderHistory.Id).gino.status()
+        await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
+        time.sleep(1)
+        await callback.bot.delete_message(callback.from_user.id,
+                                          callback.message.message_id)
+
+    elif cb_data == 'close_order':
+        for order in orders:
+            await order.update(completed=True).apply()
+            await callback.answer('Вы успешно закрылт заказ! Перезайдите для обновления!')
+            time.sleep(1)
+            await callback.bot.delete_message(callback.from_user.id,
+                                              callback.message.message_id)
+
+    elif cb_data == 'remove_item':
         if not carts:
             return await callback.answer("Корзина пуста!\nИли Вы этого не добавляли!")
-        await cart.delete()
-        await state.update_data(product_amount=1)
-        await callback.answer('Вы успешно удалили с корзины! Перезайдите в корзину для обновления!')
-        time.sleep(2)
-        await callback.bot.edit_message_reply_markup(callback.from_user.id,
-                                                     callback.message.message_id)
-
-    elif cb_data == order_id:
-        order_users = await OrderHistory.query.where(
-            OrderHistory.user_id == order_id
-        ).gino.all()
-        await OrderHistory.delete()
-        await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
-        time.sleep(2)
-        await callback.bot.edit_message_reply_markup(callback.from_user.id,
-                                                     callback.message.message_id)
+        for cart in carts:
+            await cart.delete()
+            await state.update_data(product_amount=1)
+            await callback.answer('Вы успешно удалили с корзины! Перезайдите в корзину для обновления!')
+            time.sleep(2)
+            await callback.bot.edit_message_reply_markup(callback.from_user.id,
+                                                         callback.message.message_id)
 
 
 def register_all_callback_handlers(dp: Dispatcher):

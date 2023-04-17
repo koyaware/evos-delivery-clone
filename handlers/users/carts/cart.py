@@ -30,7 +30,7 @@ async def my_cart(message: Message):
                 return await message.answer("Ваша корзина пуста!")
             for product in products:
                 product_keyboard.add(
-                    InlineKeyboardButton(f'🗙 {product.name}', callback_data=product.Id)
+                    InlineKeyboardButton(f'🗙 {product.name}', callback_data='remove_item')
                 )
                 product_name.append(f"Товар: {product.name}.")
                 product_name.append(f"Количество: {cart.amount}.")

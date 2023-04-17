@@ -15,7 +15,6 @@ class AdminCommands(Enum):
     user_orders = "Заказы пользователей 📦"
     order_history_completed = "Выполненные заказы ✔"
     order_history_uncompleted = "Не выполненные заказы ❌"
-    order_complete = "Закрыть заказ ❌"
 
 
 class MyCartCommands(Enum):

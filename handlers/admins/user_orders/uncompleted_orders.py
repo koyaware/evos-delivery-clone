@@ -1,5 +1,5 @@
 from aiogram import Dispatcher
-from aiogram.types import Message
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from sqlalchemy import and_
 
 from commands.admins import AdminCommands
@@ -24,6 +24,7 @@ async def user_orders_uncompleted(message: Message):
         user_phone_number = []
         product_price = []
         order_time = []
+        inline_keyboard = InlineKeyboardMarkup()
         cart_products: CartProducts = await CartProducts.query.where(
             CartProducts.Id == order.cart_products
         ).gino.all()
@@ -44,6 +45,10 @@ async def user_orders_uncompleted(message: Message):
                             user_phone_number.append(i)
                     product_price.append(product.price)
                     price = sum(map(int, product_price * cart_product.amount))
+                    inline_keyboard.add(
+                        InlineKeyboardButton(f'🗙 Удалить заказ', callback_data='remove_order'),
+                        InlineKeyboardButton(f'🗙 Закрыть заказ', callback_data='close_order')
+                    )
         await message.bot.send_message(message.from_user.id, f"Заказ от {order.user_id}!\n\n"
                                                              f"Номер телефон пользователя: "
                                                              f"<code>{chr(10).join([str(i) for i in user_phone_number])}</code>\n"
@@ -52,10 +57,10 @@ async def user_orders_uncompleted(message: Message):
                                                              f"\nСтоимость заказа без доставки: <b>{price}</b>сум.\n"
                                                              f"\nДата оформления заказа: "
                                                              f"<b>{chr(10).join([str(i) for i in order_time])}</b>\n"
-                                                             f"\n🔻 Геолокация пользователя: 🔻")
-        await message.bot.send_location(chat_id=message.from_user.id,
-                                        latitude=location_latitude,
-                                        longitude=location_longitude)
+                                                             f"\n🔻 Геолокация пользователя: 🔻", reply_markup=inline_keyboard)
+    await message.bot.send_location(chat_id=message.from_user.id,
+                                    latitude=location_latitude,
+                                    longitude=location_longitude)
 
 
 def register_user_orders_uncompleted_handlers(dp: Dispatcher):
