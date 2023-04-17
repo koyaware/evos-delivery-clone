@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowHotDogCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_HOT_DOG_KEYBOARDS
 from models import Products
 
@@ -161,35 +162,35 @@ async def show_tenth_case(message: Message, state: FSMContext):
 
 def register_hot_dog_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_hot_dog_menu, text=MenuCommands.show_hot_dog.value
+        show_hot_dog_menu, UserFilter(), text=MenuCommands.show_hot_dog.value
     )
     dp.register_message_handler(
-        show_first_case, text=ShowHotDogCommands.first_case.value
+        show_first_case, UserFilter(), text=ShowHotDogCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_case, text=ShowHotDogCommands.second_case.value
+        show_second_case, UserFilter(), text=ShowHotDogCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_case, text=ShowHotDogCommands.third_case.value
+        show_third_case, UserFilter(), text=ShowHotDogCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_case, text=ShowHotDogCommands.fourth_case.value
+        show_fourth_case, UserFilter(), text=ShowHotDogCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_case, text=ShowHotDogCommands.fifth_case.value
+        show_fifth_case, UserFilter(), text=ShowHotDogCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_case, text=ShowHotDogCommands.sixth_case.value
+        show_sixth_case, UserFilter(), text=ShowHotDogCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_case, text=ShowHotDogCommands.seventh_case.value
+        show_seventh_case, UserFilter(), text=ShowHotDogCommands.seventh_case.value
     )
     dp.register_message_handler(
-        show_eighth_case, text=ShowHotDogCommands.eighth_case.value
+        show_eighth_case, UserFilter(), text=ShowHotDogCommands.eighth_case.value
     )
     dp.register_message_handler(
-        show_ninth_case, text=ShowHotDogCommands.ninth_case.value
+        show_ninth_case, UserFilter(), text=ShowHotDogCommands.ninth_case.value
     )
     dp.register_message_handler(
-        show_tenth_case, text=ShowHotDogCommands.tenth_case.value
+        show_tenth_case, UserFilter(), text=ShowHotDogCommands.tenth_case.value
     )

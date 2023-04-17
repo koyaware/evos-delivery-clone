@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowSetCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_SET_KEYBOARDS
 from models import Products
 
@@ -63,14 +64,14 @@ async def show_third_set_case(message: Message, state: FSMContext):
 
 def register_set_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_set_menu, text=MenuCommands.show_set.value
+        show_set_menu, UserFilter(), text=MenuCommands.show_set.value
     )
     dp.register_message_handler(
-        show_first_set_case, text=ShowSetCommands.first_case.value
+        show_first_set_case, UserFilter(), text=ShowSetCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_set_case, text=ShowSetCommands.second_case.value
+        show_second_set_case, UserFilter(), text=ShowSetCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_set_case, text=ShowSetCommands.third_case.value
+        show_third_set_case, UserFilter(), text=ShowSetCommands.third_case.value
     )

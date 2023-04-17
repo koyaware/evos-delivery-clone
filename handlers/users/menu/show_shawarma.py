@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowShawarmaCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_SHAWARMA_KEYBOARDS
 from models import Products
 
@@ -133,29 +134,29 @@ async def show_eighth_case(message: Message, state: FSMContext):
 
 def register_shawarma_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_shawarma_menu, text=MenuCommands.show_shawarma.value
+        show_shawarma_menu, UserFilter(), text=MenuCommands.show_shawarma.value
     )
     dp.register_message_handler(
-        show_first_case, text=ShowShawarmaCommands.first_case.value
+        show_first_case, UserFilter(), text=ShowShawarmaCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_case, text=ShowShawarmaCommands.second_case.value
+        show_second_case, UserFilter(), text=ShowShawarmaCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_case, text=ShowShawarmaCommands.third_case.value
+        show_third_case, UserFilter(), text=ShowShawarmaCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_case, text=ShowShawarmaCommands.fourth_case.value
+        show_fourth_case, UserFilter(), text=ShowShawarmaCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_case, text=ShowShawarmaCommands.fifth_case.value
+        show_fifth_case, UserFilter(), text=ShowShawarmaCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_case, text=ShowShawarmaCommands.sixth_case.value
+        show_sixth_case, UserFilter(), text=ShowShawarmaCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_case, text=ShowShawarmaCommands.seventh_case.value
+        show_seventh_case, UserFilter(), text=ShowShawarmaCommands.seventh_case.value
     )
     dp.register_message_handler(
-        show_eighth_case, text=ShowShawarmaCommands.eighth_case.value
+        show_eighth_case, UserFilter(), text=ShowShawarmaCommands.eighth_case.value
     )

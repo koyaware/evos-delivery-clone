@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowDishesCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_DISHES_KEYBOARDS
 from models import Products
 
@@ -119,26 +120,26 @@ async def show_seventh_case(message: Message, state: FSMContext):
 
 def register_dishes_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_dishes_menu, text=MenuCommands.show_dishes.value
+        show_dishes_menu, UserFilter(), text=MenuCommands.show_dishes.value
     )
     dp.register_message_handler(
-        show_first_case, text=ShowDishesCommands.first_case.value
+        show_first_case, UserFilter(), text=ShowDishesCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_case, text=ShowDishesCommands.second_case.value
+        show_second_case, UserFilter(), text=ShowDishesCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_case, text=ShowDishesCommands.third_case.value
+        show_third_case, UserFilter(), text=ShowDishesCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_case, text=ShowDishesCommands.fourth_case.value
+        show_fourth_case, UserFilter(), text=ShowDishesCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_case, text=ShowDishesCommands.fifth_case.value
+        show_fifth_case, UserFilter(), text=ShowDishesCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_case, text=ShowDishesCommands.sixth_case.value
+        show_sixth_case, UserFilter(), text=ShowDishesCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_case, text=ShowDishesCommands.seventh_case.value
+        show_seventh_case, UserFilter(), text=ShowDishesCommands.seventh_case.value
     )

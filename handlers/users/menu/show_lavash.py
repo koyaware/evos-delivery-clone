@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowLavashCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_LAVASH_KEYBOARDS
 from models import Products
 
@@ -179,35 +180,35 @@ def register_lavash_handler(dp: Dispatcher):
         show_lavash_menu, text=MenuCommands.show_lavash.value
     )
     dp.register_message_handler(
-        show_first_lavash_case, text=ShowLavashCommands.first_case.value
+        show_first_lavash_case, UserFilter(), text=ShowLavashCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_lavash_case, text=ShowLavashCommands.second_case.value
+        show_second_lavash_case, UserFilter(), text=ShowLavashCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_lavash_case, text=ShowLavashCommands.third_case.value
+        show_third_lavash_case, UserFilter(), text=ShowLavashCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_lavash_case, text=ShowLavashCommands.fourth_case.value
+        show_fourth_lavash_case, UserFilter(), text=ShowLavashCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_lavash_case, text=ShowLavashCommands.fifth_case.value
+        show_fifth_lavash_case, UserFilter(), text=ShowLavashCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_lavash_case, text=ShowLavashCommands.sixth_case.value
+        show_sixth_lavash_case, UserFilter(), text=ShowLavashCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_lavash_case, text=ShowLavashCommands.seventh_case.value
+        show_seventh_lavash_case, UserFilter(), text=ShowLavashCommands.seventh_case.value
     )
     dp.register_message_handler(
-        show_eighth_lavash_case, text=ShowLavashCommands.eighth_case.value
+        show_eighth_lavash_case, UserFilter(),  text=ShowLavashCommands.eighth_case.value
     )
     dp.register_message_handler(
-        show_ninth_lavash_case, text=ShowLavashCommands.ninth_case.value
+        show_ninth_lavash_case, UserFilter(), text=ShowLavashCommands.ninth_case.value
     )
     dp.register_message_handler(
-        show_tenth_lavash_case, text=ShowLavashCommands.tenth_case.value
+        show_tenth_lavash_case, UserFilter(), text=ShowLavashCommands.tenth_case.value
     )
     dp.register_message_handler(
-        show_eleventh_lavash_case, text=ShowLavashCommands.eleventh_case.value
+        show_eleventh_lavash_case, UserFilter(), text=ShowLavashCommands.eleventh_case.value
     )

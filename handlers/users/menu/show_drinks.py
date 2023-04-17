@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowDrinksCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_DRINKS_KEYBOARDS
 from models import Products
 
@@ -176,38 +177,38 @@ async def show_eleventh_case(message: Message, state: FSMContext):
 
 def register_drinks_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_drinks_menu, text=MenuCommands.show_drinks.value
+        show_drinks_menu, UserFilter(), text=MenuCommands.show_drinks.value
     )
     dp.register_message_handler(
-        show_first_case, text=ShowDrinksCommands.first_case.value
+        show_first_case, UserFilter(), text=ShowDrinksCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_case, text=ShowDrinksCommands.second_case.value
+        show_second_case, UserFilter(), text=ShowDrinksCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_case, text=ShowDrinksCommands.third_case.value
+        show_third_case, UserFilter(), text=ShowDrinksCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_case, text=ShowDrinksCommands.fourth_case.value
+        show_fourth_case, UserFilter(), text=ShowDrinksCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_case, text=ShowDrinksCommands.fifth_case.value
+        show_fifth_case, UserFilter(), text=ShowDrinksCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_case, text=ShowDrinksCommands.sixth_case.value
+        show_sixth_case, UserFilter(), text=ShowDrinksCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_case, text=ShowDrinksCommands.seventh_case.value
+        show_seventh_case, UserFilter(), text=ShowDrinksCommands.seventh_case.value
     )
     dp.register_message_handler(
-        show_eighth_case, text=ShowDrinksCommands.eighth_case.value
+        show_eighth_case, UserFilter(), text=ShowDrinksCommands.eighth_case.value
     )
     dp.register_message_handler(
-        show_ninth_case, text=ShowDrinksCommands.ninth_case.value
+        show_ninth_case, UserFilter(), text=ShowDrinksCommands.ninth_case.value
     )
     dp.register_message_handler(
-        show_tenth_case, text=ShowDrinksCommands.tenth_case.value
+        show_tenth_case, UserFilter(), text=ShowDrinksCommands.tenth_case.value
     )
     dp.register_message_handler(
-        show_eleventh_case, text=ShowDrinksCommands.eleventh_case.value
+        show_eleventh_case, UserFilter(), text=ShowDrinksCommands.eleventh_case.value
     )

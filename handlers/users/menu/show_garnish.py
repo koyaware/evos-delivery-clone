@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowGarnishCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_GARNISH_KEYBOARDS
 from models import Products
 
@@ -133,29 +134,29 @@ async def show_eighth_case(message: Message, state: FSMContext):
 
 def register_garnish_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_garnish_menu, text=MenuCommands.show_garnish.value
+        show_garnish_menu, UserFilter(), text=MenuCommands.show_garnish.value
     )
     dp.register_message_handler(
-        show_first_case, text=ShowGarnishCommands.first_case.value
+        show_first_case, UserFilter(), text=ShowGarnishCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_case, text=ShowGarnishCommands.second_case.value
+        show_second_case, UserFilter(), text=ShowGarnishCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_case, text=ShowGarnishCommands.third_case.value
+        show_third_case, UserFilter(), text=ShowGarnishCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_case, text=ShowGarnishCommands.fourth_case.value
+        show_fourth_case, UserFilter(), text=ShowGarnishCommands.fourth_case.value
     )
     dp.register_message_handler(
-        show_fifth_case, text=ShowGarnishCommands.fifth_case.value
+        show_fifth_case, UserFilter(), text=ShowGarnishCommands.fifth_case.value
     )
     dp.register_message_handler(
-        show_sixth_case, text=ShowGarnishCommands.sixth_case.value
+        show_sixth_case, UserFilter(), text=ShowGarnishCommands.sixth_case.value
     )
     dp.register_message_handler(
-        show_seventh_case, text=ShowGarnishCommands.seventh_case.value
+        show_seventh_case, UserFilter(), text=ShowGarnishCommands.seventh_case.value
     )
     dp.register_message_handler(
-        show_eighth_case, text=ShowGarnishCommands.eighth_case.value
+        show_eighth_case, UserFilter(), text=ShowGarnishCommands.eighth_case.value
     )

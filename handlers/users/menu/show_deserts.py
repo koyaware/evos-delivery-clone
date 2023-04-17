@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from buttons.inline import keyboard
 from commands.admins import MenuCommands, ShowDesertsCommands
+from filters.admin import UserFilter
 from keyboards.reply import SHOW_DESERTS_KEYBOARDS
 from models import Products
 
@@ -77,17 +78,17 @@ async def show_fourth_case(message: Message, state: FSMContext):
 
 def register_deserts_handler(dp: Dispatcher):
     dp.register_message_handler(
-        show_deserts_menu, text=MenuCommands.show_deserts.value
+        show_deserts_menu, UserFilter(), text=MenuCommands.show_deserts.value
     )
     dp.register_message_handler(
-        show_first_case, text=ShowDesertsCommands.first_case.value
+        show_first_case, UserFilter(), text=ShowDesertsCommands.first_case.value
     )
     dp.register_message_handler(
-        show_second_case, text=ShowDesertsCommands.second_case.value
+        show_second_case, UserFilter(), text=ShowDesertsCommands.second_case.value
     )
     dp.register_message_handler(
-        show_third_case, text=ShowDesertsCommands.third_case.value
+        show_third_case, UserFilter(), text=ShowDesertsCommands.third_case.value
     )
     dp.register_message_handler(
-        show_fourth_case, text=ShowDesertsCommands.fourth_case.value
+        show_fourth_case, UserFilter(), text=ShowDesertsCommands.fourth_case.value
     )
