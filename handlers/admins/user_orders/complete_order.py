@@ -12,12 +12,13 @@ async def order_complete(message: Message):
     ).gino.all()
     if not orders:
         return await message.answer('Нет заказов!')
-    # inline_keyboard = InlineKeyboardMarkup()
-    # inline_keyboard.add(
-    #     InlineKeyboardButton(f'🗙 {}', callback_data=)
-    # )
-    # await message.answer("Заказы упорядочены по ID пользователям.",
-    #                      reply_markup=inline_keyboard)
+    for order in orders:
+        inline_keyboard = InlineKeyboardMarkup()
+        inline_keyboard.add(
+            InlineKeyboardButton(f'🗙 {order.user_id}', callback_data=order.Id)
+        )
+    await message.answer("Заказы упорядочены по ID пользователям.",
+                         reply_markup=inline_keyboard)
 
 
 def register_user_order_complete_handlers(dp: Dispatcher):

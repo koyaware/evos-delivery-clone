@@ -13,11 +13,11 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         Cart.user_id == callback.from_user.id).gino.all()
     if not cart_users:
         await Cart.create(user_id=callback.from_user.id)
-    # orders = await OrderHistory.query.where(
-    #     OrderHistory.user_id == callback.from_user.id
-    # ).gino.all()
-    # for order in orders:
-    #     order_id = order.user_id
+    orders = await OrderHistory.query.where(
+        OrderHistory.user_id == callback.from_user.id
+    ).gino.all()
+    for order in orders:
+        order_id = order.user_id
     for cart_user in cart_users:
         cart_id = cart_user.Id
         carts: CartProducts = await CartProducts.query.where(
@@ -34,6 +34,13 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
 
+    elif cb_data == 'remove_order' or order_id:
+        await order.delete()
+        await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
+        time.sleep(2)
+        await callback.bot.edit_message_reply_markup(callback.from_user.id,
+                                                     callback.message.message_id)
+
     elif cb_data == 'minus_item':
         async with state.proxy() as data:
             product_amount = data['product_amount']
@@ -43,12 +50,6 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(product_amount=product_amount)
         return await callback.answer(f"Количество штук: {product_amount}")
 
-    # elif cb_data == 'remove_order' or order_id:
-    #     await order.delete()
-    #     await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
-    #     time.sleep(2)
-    #     await callback.bot.edit_message_reply_markup(callback.from_user.id,
-    #                                                  callback.message.message_id)
 
     elif cb_data == 'add_item':
         async with state.proxy() as data:
