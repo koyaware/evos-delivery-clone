@@ -8,6 +8,8 @@ from commands.admins import Commands, MenuCommands, ShowSetCommands, ShowLavashC
 MAIN_MENU_BUTTON = KeyboardButton(Commands.main_menu.value)
 COME_BACK_BUTTON = KeyboardButton(Commands.come_back.value)
 MY_CART_BUTTON = KeyboardButton(Commands.my_cart.value)
+SEND_CONTACT_BUTTON = KeyboardButton(Commands.send_contact.value, request_contact=True)
+SEND_LOCATION_BUTTON = KeyboardButton(Commands.send_location.value, request_location=True)
 
 
 # КНОПКИ АДМИНОВ
@@ -25,6 +27,10 @@ PLACE_ORDER_BUTTON = KeyboardButton(MyCartCommands.place_order.value)
 EMPTY_THE_TRASH_BUTTON = KeyboardButton(MyCartCommands.delete_cart.value)
 DELIVERY_TIME_BUTTON = KeyboardButton(MyCartCommands.order_time.value)
 
+
+# КНОПКА НАСТРОЕК
+
+SETTINGS_BUTTON = KeyboardButton(Commands.settings.value)
 
 
 # МЕНЮ КНОПКИ

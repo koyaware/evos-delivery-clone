@@ -5,6 +5,9 @@ class Commands(Enum):
     main_menu = "Меню 📇"
     come_back = "Вернуться в главное меню 📇"
     my_cart = "Корзина 🗑️"
+    send_contact = "Отправить контакт ☎"
+    send_location = "Отправить геолоакцию 📍"
+    settings = "Настройки ⚙"
 
 
 class AdminCommands(Enum):

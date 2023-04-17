@@ -10,7 +10,9 @@ class Users(db.Model):
 
     tg_id = Column(BigInteger(), primary_key=True)
     is_user = Column(Boolean(), default=True)
-    phone_number = Column(String)
+    phone_number = Column(String(128))
+    location_latitude = Column(String(256))
+    location_longitude = Column(String(256))
 
 
 class Products(db.Model):
@@ -18,9 +20,9 @@ class Products(db.Model):
     __tablename__ = "products"
 
     Id = Column(BigInteger(), primary_key=True)
-    name = Column(String(120), unique=True)
+    name = Column(String(128), unique=True)
     photo_url = Column(String, unique=True)
-    desc = Column(String(1000))
+    desc = Column(String(1028))
     price = Column(BigInteger(), default=None)
 
 
