@@ -1,4 +1,4 @@
-# 🔗  Telegram online store bot
+# 🌑  Telegram online store bot
 
 [![Generic badge](https://img.shields.io/badge/koya-ware-purple?logo=github)](https://github.com/koyaware/)
  
