@@ -13,8 +13,7 @@ class Commands(Enum):
 class AdminCommands(Enum):
     is_active = "Посмотреть всех пользователей 👥"
     user_orders = "Заказы пользователей 📦"
-    order_history_completed = "Выполненные заказы ✔"
-    order_history_uncompleted = "Не выполненные заказы ❌"
+    user_orders_list = "Заказы ❌"
 
 
 class MyCartCommands(Enum):

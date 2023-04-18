@@ -49,14 +49,12 @@ async def send_order(message: Message):
                         orders = await OrderHistory.query.where(and_(
                             OrderHistory.user_id == message.from_user.id,
                             OrderHistory.cart_products == cart_product.Id,
-                            OrderHistory.completed == False
                         )).gino.all()
                         if orders:
                             return await message.answer("Ваш заказ уже рассматривается.")
                         await OrderHistory.create(
                             user_id=message.from_user.id,
                             cart_products=cart_product.Id,
-                            completed=False,
                             order_date=datetime.now().replace(microsecond=0)
                         )
             await message.bot.send_message(conf, f"Новый заказ от {message.from_user.id}!\n\n"

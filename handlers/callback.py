@@ -63,14 +63,6 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         await callback.bot.delete_message(callback.from_user.id,
                                           callback.message.message_id)
 
-    elif cb_data == 'close_order':
-        for order in orders:
-            await order.update(completed=True).apply()
-            await callback.answer('Вы успешно закрылт заказ! Перезайдите для обновления!')
-            time.sleep(1)
-            await callback.bot.delete_message(callback.from_user.id,
-                                              callback.message.message_id)
-
     elif cb_data == 'remove_item':
         if not carts:
             return await callback.answer("Корзина пуста!\nИли Вы этого не добавляли!")

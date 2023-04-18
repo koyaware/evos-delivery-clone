@@ -50,6 +50,5 @@ class OrderHistory(db.Model):
 
     Id = Column(BigInteger(), primary_key=True)
     cart_products = Column(ForeignKey("cart products.Id"))
-    completed = Column(Boolean(), default=False)
     user_id = Column(ForeignKey("users.tg_id"))
     order_date = Column(DateTime())
