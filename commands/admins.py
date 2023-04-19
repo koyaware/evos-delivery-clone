@@ -8,6 +8,7 @@ class Commands(Enum):
     send_contact = "Отправить контакт ☎"
     send_location = "Отправить геолоакцию 📍"
     settings = "Настройки ⚙"
+    change_name = "Сменить имя 🤵"
 
 
 class AdminCommands(Enum):

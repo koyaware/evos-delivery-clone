@@ -10,6 +10,7 @@ class Users(db.Model):
 
     tg_id = Column(BigInteger(), primary_key=True)
     is_user = Column(Boolean(), default=True)
+    name = Column(String(128))
     phone_number = Column(String(128))
     location_latitude = Column(String(256))
     location_longitude = Column(String(256))

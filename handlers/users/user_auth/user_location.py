@@ -12,6 +12,7 @@ async def user_location(message: Message, state: FSMContext):
     if message.location is not None:
         async with state.proxy() as data:
             phone_number = data['phone_number']
+            user_name = data['name']
         users: Users = await Users.query.where(and_(
             Users.tg_id == message.from_user.id,
             Users.phone_number == phone_number
@@ -19,6 +20,7 @@ async def user_location(message: Message, state: FSMContext):
         if users:
             await Users.delete.where(Users.tg_id == message.from_user.id).gino.status()
         await Users.create(tg_id=message.from_user.id,
+                           name=user_name,
                            phone_number=phone_number,
                            location_latitude=str(message.location.latitude),
                            location_longitude=str(message.location.longitude))

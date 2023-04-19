@@ -13,9 +13,6 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         Cart.user_id == callback.from_user.id).gino.all()
     if not cart_users:
         await Cart.create(user_id=callback.from_user.id)
-    orders = await OrderHistory.query.where(
-        OrderHistory.user_id == callback.from_user.id
-    ).gino.all()
     for cart_user in cart_users:
         cart_id = cart_user.Id
         carts: CartProducts = await CartProducts.query.where(
@@ -57,10 +54,14 @@ async def cb_handler(callback: CallbackQuery, state: FSMContext):
         return await callback.answer('Добавлено в корзину!')
 
     elif cb_data == 'remove_order':
-        await OrderHistory.delete.where(OrderHistory.Id == OrderHistory.Id).gino.status()
-        await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
-        time.sleep(1)
-        await callback.bot.delete_message(callback.from_user.id,
+        orders = await OrderHistory.query.where(
+            OrderHistory.user_id == OrderHistory.user_id
+        ).gino.all()
+        for order in orders:
+            await order.delete()
+            await callback.answer('Вы успешно удалили заказ! Перезайдите для обновления!')
+            time.sleep(1)
+            await callback.bot.delete_message(callback.from_user.id,
                                           callback.message.message_id)
 
     elif cb_data == 'remove_item':

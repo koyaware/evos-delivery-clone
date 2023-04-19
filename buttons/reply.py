@@ -29,6 +29,7 @@ DELIVERY_TIME_BUTTON = KeyboardButton(MyCartCommands.order_time.value)
 # КНОПКА НАСТРОЕК
 
 SETTINGS_BUTTON = KeyboardButton(Commands.settings.value)
+CHANGE_NAME_BUTTON = KeyboardButton(Commands.change_name.value)
 
 
 # МЕНЮ КНОПКИ
