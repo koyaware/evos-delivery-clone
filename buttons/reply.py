@@ -16,8 +16,7 @@ SEND_LOCATION_BUTTON = KeyboardButton(Commands.send_location.value, request_loca
 
 IS_ACTIVE_BUTTON = KeyboardButton(AdminCommands.is_active.value)
 USER_ORDERS_BUTTON = KeyboardButton(AdminCommands.user_orders.value)
-ORDER_HISTORY_COMPLETED_BUTTON = KeyboardButton(AdminCommands.order_history_completed.value)
-ORDER_HISTORY_UNCOMPLETED_BUTTON = KeyboardButton(AdminCommands.order_history_uncompleted.value)
+USER_ORDERS_LIST_BUTTON = KeyboardButton(AdminCommands.user_orders_list.value)
 
 
 # МОЯ КОРЗИНА КНОПКИ
